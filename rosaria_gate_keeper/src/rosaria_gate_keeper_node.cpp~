@@ -1,0 +1,16 @@
+#include "rosaria_gate_keeper/resource_gate_keeper.h"
+
+
+
+int main(int argc, char** argv){
+
+    ros::init(argc, argv, "rosaria_gate_keeper");
+    ros::Rate rate(10);
+    
+    ResourceGateKeeper<std_msgs::String> rosaria_gate_keeper("rosaria", "/cmd_vel", "Rosaria/cmd_vel");
+    
+    ros::spin();
+
+    return 0;
+}
+

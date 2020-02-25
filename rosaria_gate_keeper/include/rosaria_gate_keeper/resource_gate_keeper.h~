@@ -1,0 +1,75 @@
+#include <cstdlib>
+#include <map>
+#include <typeinfo>
+#include "ros/ros.h"
+#include "cyborg_state_machine/state_msgs.h"
+#include "std_msgs/String.h"
+
+
+
+
+template <typename ROSMessageType>
+class ResourceGateKeeper
+{
+    public:        
+        
+        ResourceGateKeeper(std::string resourceName, std::string inputTopicEnding, std::string outputTopic);
+        ~ResourceGateKeeper();
+        
+        void newStateCb(const cyborg_state_machine::state_msgs& new_state_msg);
+        void dataReceivedCb(const ROSMessageType msg);
+        
+    private:
+    
+        std::string resourceName; 
+        std::string inputTopicEnding;
+        std::string outputTopic;
+        ros::NodeHandle n;
+        ros::Publisher resourcePublisher;
+        ros::Subscriber stateChangeSubscriber;
+        ros::Subscriber moduleSubscriber;         
+
+};
+
+template<typename ROSMessageType>
+ResourceGateKeeper<ROSMessageType>::ResourceGateKeeper(std::string resourceName, std::string inputTopicEnding, std::string outputTopic){
+
+    ROS_INFO("Gate keeper initialized");
+    this->resourceName = resourceName;
+    this->inputTopicEnding = inputTopicEnding;
+    this->outputTopic = outputTopic;
+    this->stateChangeSubscriber = n.subscribe("/cyborg_state_machine/state_change", 1000, &ResourceGateKeeper::newStateCb, this);
+}
+
+
+template<typename ROSMessageType>
+ResourceGateKeeper<ROSMessageType>::~ResourceGateKeeper(){}
+
+
+template<typename ROSMessageType>
+void ResourceGateKeeper<ROSMessageType>::newStateCb(const cyborg_state_machine::state_msgs& new_state_msg){
+
+    ROS_INFO("Change of state");
+    
+    if (moduleSubscriber.getNumPublishers() > 0) {
+        moduleSubscriber.shutdown();
+    }
+    
+    std::map<std::string, std::string> resource_topic_remap;
+    n.getParam("/state_resources", resource_topic_remap);
+    
+    if (resource_topic_remap.find(resourceName) != resource_topic_remap.end()){
+            std::string current_topic_name =  resource_topic_remap.find(resourceName)->second;   
+            moduleSubscriber = n.subscribe(current_topic_name + inputTopicEnding, 1000, &ResourceGateKeeper::dataReceivedCb, this);            
+    }    
+    
+    
+}
+
+
+template<class ROSMessageType>
+void ResourceGateKeeper<ROSMessageType>::dataReceivedCb(const ROSMessageType msg){
+    
+    resourcePublisher.publish(msg);
+
+}

@@ -1,0 +1,10 @@
+<launch>
+    <include file="$(find k2_client)/launch/k2_client.launch" />
+    <node name="ntnu_cyborg_follower_node" pkg="ntnu_cyborg_follower" type="ntnu_cyborg_follower_node" output="screen">
+        <param name="use_coordinator" value="false" />
+    </node>
+    <node name="rosaria" pkg="rosaria" type="RosAria">
+        <param name="trans_accel" value="0.1" />
+        <param name="publish_aria_lasers" value="true" />
+    </node>
+</launch>

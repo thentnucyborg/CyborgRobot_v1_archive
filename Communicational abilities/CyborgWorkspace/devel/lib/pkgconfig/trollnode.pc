@@ -1,0 +1,8 @@
+prefix=/home/viki/Desktop/speech_ws/devel
+
+Name: trollnode
+Description: Description of trollnode
+Version: 0.0.3
+Cflags: -I/home/viki/Desktop/speech_ws/devel/include -I/home/viki/Desktop/speech_ws/src/trollnode-kinect_img/include
+Libs: -L/home/viki/Desktop/speech_ws/devel/lib 
+Requires: message_runtime

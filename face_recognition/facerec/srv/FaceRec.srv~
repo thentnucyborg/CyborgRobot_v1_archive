@@ -1,0 +1,4 @@
+int csv
+string pic 
+---
+int64 predictedLabel

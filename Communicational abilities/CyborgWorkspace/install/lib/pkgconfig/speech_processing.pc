@@ -1,0 +1,8 @@
+prefix=/home/viki/Desktop/speech_ws/install
+
+Name: speech_processing
+Description: Description of speech_processing
+Version: 0.0.0
+Cflags: -I/home/viki/Desktop/speech_ws/install/include
+Libs: -L/home/viki/Desktop/speech_ws/install/lib 
+Requires: message_runtime

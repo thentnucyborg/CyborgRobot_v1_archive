@@ -1,0 +1,17 @@
+<launch>
+    <node name="ntnu_cyborg_simon_says_node" pkg="ntnu_cyborg_simon_says" type="ntnu_cyborg_simon_says_node" output="screen">
+        <param name="use_coordinator" value="true" />
+        <param name="challenge_count" value="4" />
+        <param name="delay_event_begin" value="3.0" />
+        <param name="delay_game_restart" value="10.0" />
+        <param name="message_command_preface" value="Simon says:" />
+        <param name="message_game_completed" value="Congratulations! You are a winner!" />
+        <param name="message_game_start" value="Welcome to the game!" />
+        <param name="message_command_ignored" value="You failed to follow command. Game over!" />
+        <param name="message_non_command_followed" value="Ha-ha. That was no command. Game over!" />
+        <param name="message_command_followed" value="Well done!" />
+        <param name="message_non_command_ignored" value="Good job!" />
+    </node>
+    <node name="trollnode" pkg="trollnode" type="setExpression" output="screen">
+    </node>
+</launch>

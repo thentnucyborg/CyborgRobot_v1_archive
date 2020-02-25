@@ -1,0 +1,7 @@
+set(_CATKIN_CURRENT_PACKAGE "speech_processing")
+set(speech_processing_MAINTAINER "viki <steinar.kraugerud@gmail.com>")
+set(speech_processing_DEPRECATED "")
+set(speech_processing_VERSION "0.0.0")
+set(speech_processing_BUILD_DEPENDS "roscpp" "rospy" "std_msgs" "message_generation")
+set(speech_processing_RUN_DEPENDS "roscpp" "rospy" "std_msgs" "message_runtime")
+set(speech_processing_BUILDTOOL_DEPENDS "catkin")

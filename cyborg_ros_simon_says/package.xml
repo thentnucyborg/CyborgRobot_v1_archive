@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package>
+  <name>ntnu_cyborg_simon_says</name>
+  <version>0.0.0</version>
+  <description>NTNU Cyborg ROS Package: Simon Says</description>
+  <license>TODO</license>
+  <url type="website">https://github.com/thentnucyborg/ntnu_cyborg_simon_says</url>
+  <maintainer email="cyborg@ntnu.edu">NTNU Cyborg</maintainer>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>geometry_msgs</build_depend>
+  <build_depend>message_generation</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>k2_client</build_depend>
+  <build_depend>trollnode</build_depend>
+  <build_depend>ntnu_cyborg_coordinator</build_depend>
+  <run_depend>geometry_msgs</run_depend>
+  <run_depend>message_generation</run_depend>
+  <run_depend>roscpp</run_depend>
+  <run_depend>std_msgs</run_depend>
+  <run_depend>k2_client</run_depend>
+  <run_depend>trollnode</run_depend>
+  <run_depend>ntnu_cyborg_coordinator</run_depend>
+</package>
